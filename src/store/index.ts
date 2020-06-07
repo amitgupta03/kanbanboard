@@ -4,30 +4,30 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {  
-            comesFrom:'',
-            idForTodo:2,
+            
+            idForTodo:3,
             todos: [
                 {
-                'id': 0,
+                'id': 1,
                 'title': 'First todo item',
                 'editing': false,
                 'comesFrom':'todos'
                 },
                 { 
-                'id': 1,
+                'id': 2,
                 'title': 'Second todo item',
                 'editing': false,
                 'comesFrom':'todos'
                 }
             ],
             inProgress:[ {
-              'id': 0,
+              'id': 1,
               'title': 'Process todo item',
               'editing': false,
               'comesFrom':'inProgress'
               },],
             completed:[ {
-              'id': 0,
+              'id': 1,
               'title': 'Completed todo item',
               'editing': false,
               'comesFrom':'completed'
@@ -56,19 +56,37 @@ export default new Vuex.Store({
       todo.editing = false;
     },
     DELETE_TODO(state,todo){
-      const comesFrom: object=todo.comesFrom;
-      const index=state.todos.indexOf(todo);
-      state.todos.splice(index, 1);
+      const comesFrom: any=todo.comesFrom;
+      if(comesFrom==='todos'){
+        const index=state.todos.indexOf(todo);
+        state.todos.splice(index, 1);
+      }else if(comesFrom==='inProgress'){
+        const index=state.inProgress.indexOf(todo);
+        state.inProgress.splice(index, 1);
+      }else{
+        const index=state.completed.indexOf(todo);
+        state.completed.splice(index, 1);
+      }
     },
     ASSIGN_TODO(state,todo){
+      todo.comesFrom ='inProgress';
       state.inProgress.push(todo);
       const index=state.todos.indexOf(todo);
       state.todos.splice(index,1);
     },
     ASSIGN_COMP(state,todo){
-      state.completed.push(todo);
-      const index=state.todos.indexOf(todo);
-      state.todos.splice(index,1);
+      if(todo.comesFrom==='todos'){
+        todo.comesFrom ='completed';
+        state.completed.push(todo);
+        const index=state.todos.indexOf(todo);
+        state.todos.splice(index,1);
+      }else{
+        todo.comesFrom ='completed';
+        state.completed.push(todo);
+        const index=state.inProgress.indexOf(todo);
+        state.inProgress.splice(index,1);
+      }
+     
     }
 
   

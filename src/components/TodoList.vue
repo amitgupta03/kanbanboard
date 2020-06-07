@@ -2,10 +2,7 @@
 <div id="TodoList" >
     <v-container grid-list-md text-xs-center>
           <br>
-          <v-col cols="12" sm="6" style="display:inline-block">
-          <v-text-field label="ADD TASK"  v-model="newTodo"    dense @keypress.enter="addTodo()"    outlined></v-text-field>
-          <v-btn large color="primary">Primary</v-btn>
-          </v-col>
+          <v-text-field label="ADD TASK"  v-model="newTodo"     @keypress.enter="addTodo()" rounded solo outlined  clearable type="text"></v-text-field>
          <v-layout >
            
             <v-list class="mx-auto" >
@@ -47,7 +44,7 @@
                         <v-row align="center" justify="end">
                             <v-icon class="mr-1" v-if="!todo.editing" @click="assignTodoComplete(todo)">mdi-check-all</v-icon>
                         <v-icon class="mr-1" v-if="!todo.editing" @click="editTodo(todo)">mdi-pencil</v-icon>
-                        <v-icon class="mr-1" v-else @click="doneEdit(todo)" dark>save</v-icon>
+                        <v-icon class="mr-1" v-else @click="doneEdit(todo)" >save</v-icon>
                         <v-icon class="mr-1" v-if="!todo.editing" @click="deleteTodo(todo , 'todos')">mdi-delete</v-icon>
                         </v-row>
                     </v-list-item>
@@ -67,7 +64,7 @@
                     <v-list-item class="grow">
                         <v-row align="center" justify="end">
                         <v-icon class="mr-1" v-if="!todo.editing" @click="editTodo(todo)">mdi-pencil</v-icon>
-                        <v-icon class="mr-1" v-else @click="doneEdit(todo)" dark>save</v-icon>
+                        <v-icon class="mr-1" v-else @click="doneEdit(todo)" >save</v-icon>
                         <v-icon class="mr-1" v-if="!todo.editing"  @click="deleteTodo(todo)">mdi-delete</v-icon>
                         </v-row>
                     </v-list-item>
