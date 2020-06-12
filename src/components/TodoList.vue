@@ -2,7 +2,7 @@
 <div id="TodoList" >
     <v-container grid-list-md text-xs-center>
           <br>
-          <v-text-field label="ADD TASK"  v-model="newTodo"     @keypress.enter="addTodo()" rounded solo outlined  clearable type="text"></v-text-field>
+          <v-text-field label="ADD TASK"  v-model="newTodo"  @keypress.enter="addTodo()" rounded solo outlined  clearable type="text"></v-text-field>
          <v-layout >
            
             <v-list class="mx-auto" >
@@ -78,14 +78,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-// import draggable from "vuedraggable";
 
   export default Vue.extend({
     name: 'TodoList',
-    // components: {
-    //      draggable
-    //  },
-
+   
     data(){
         return{
             newTodo: "",
@@ -104,7 +100,7 @@ import Vue from 'vue';
         },
     },
     methods:{
-        addTodo(){
+        addTodo(): void{
             this.$store.dispatch('addNewTodo',this.newTodo)
             this.newTodo="";
         },

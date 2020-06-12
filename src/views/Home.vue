@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <TodoList/>
+     <Header/>
+    <TodoList />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 // @ is an alias to /src
 import TodoList from '@/components/TodoList.vue'
+import Header from '@/components/Header.vue'
+// import firebase from 'firebase'
 export default {
   name: 'Home',
   components: {
-    TodoList
-  }
+    TodoList,
+     Header
+  },
+ 
 }
 </script>
